@@ -51,13 +51,17 @@ echo "<br>";
     <?php include 'parts/head.php'; ?>
 </head>
 <body>
- 
-<form action="select.php" method="post">
-个人信息: <input type="text" name="userid">
-<input type="submit" value="进入">
-立即用车: <input type="text" name="bicycleid">
-<input type="submit" value="提交">
-</form>
- 
+
+    <script language = "JavaScript">
+        function bt_click(){
+            alert("enter");
+            var dis = "<?php
+            $url = "http://localhost/bike/bicyclesql-master/getinfo.php?uid=".$uid;           
+            echo $url;?>";
+            alert(dis);
+            window.location.href = dis;
+        }
+    </script>
+    <input type="button" name="show" id="show" value="提交" onclick= "bt_click();">
 </body>
 </html>

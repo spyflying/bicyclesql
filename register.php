@@ -1,47 +1,43 @@
 <?php
 require_once 'public.php';
 
+$uid = $_POST["userid"];
+$name = $_POST["username"];
+$pwd = $_POST["userpss1"];
+$prof = $_POST["userprof"];
+$paypss = $_POST["paypssw1"];
+$utype = 0;
+
+echo "enter";
+//判断是否已存在该用户
+$uid_query = "SELECT *
+              FROM user
+              WHERE userid = '{$uid}';";
+$result = mysqli_query($db, $uid_query);
+echo mysqli_num_rows($result);
+if(mysqli_num_rows($result)){
+    //该用户已注册过
+    header("refresh:3;url=login.html");
+    print('该用户已注册过，请直接登录~~~');
+}
+
+else{
+    echo "yes";
+    $uid_query = "INSERT INTO user(userid, username, userpss, userprof, usertype)
+                VALUES('{$uid}', '{$name}', '{$pwd}', '{$prof}', '{$utype}');";
+    echo $uid_query;
+    $result = mysqli_query($db, $uid_query);
+    if(!$result){
+        die('Cannot insert data: ' . mysqli_error($db));
+    }
+    $bal = 100;
+    $account_query = "INSERT INTO account(userid, balance, paypssw)
+                        VALUES('{$uid}', '{$bal}', '{$paypss}');";
+    $result = mysqli_query($db, $account_query);
+    echo $account_query;
+    //注册成功，跳转到登录页面
+    header("refresh:3;url = login.html"); 
+    print("注册成功，三秒后跳转到登录页面。。。。。。");
+
+}
 ?>
-<html>
-<head>
-    <title>注册</title>
-    <?php include 'parts/head.php'; ?>
-</head>
-<body>
-    <?php include 'parts/nav.php'; ?>
-    <div class="container">
-        <h1>注册用户</h1>
-        <?php
-        $statement = $db->prepare(<<<QUERY
-INSERT INTO `用户` values(NULL, ?, ?, ?, ?, ?, ?, 0, 0)
-QUERY
-        );
-
-        $dpID = 20;
-        $statement->bind_param("ssssss", $_POST['UserName'],  $dpID, $_POST['RealName'], $_POST['Password'], $_POST['Gender'], $_POST['PhoneNumber']);
-
-        $passwd = $_POST['Password'];
-        $passwd_confirm = $_POST['Password_confirm'];
-        if($passwd != $passwd_confirm) {?>
-            <p>两次密码不一致！</p>
-        <?php } else {
-            if ($statement->execute()) { ?>
-            <p>注册成功！</p>
-            <p>
-                昵称 = <?= $_POST['UserName'] ?> <br>
-                真实姓名 = <?= $_POST['RealName'] ?> <br>
-                性别 = <?= $_POST['Gender'] ?> <br>
-                联系方式 = <?= $_POST['PhoneNumber'] ?><br>
-            </p>
-            <?php } else { ?>
-            <p>注册失败……</p>
-            <p>
-                昵称 = <?= $_POST['UserName'] ?> <br>
-                真实姓名 = <?= $_POST['RealName'] ?> <br>
-                性别 = <?= $_POST['Gender'] ?> <br>
-                联系方式 = <?= $_POST['PhoneNumber'] ?><br>
-            </p>
-            <?php }
-        }?>
-    </div>
-</body>

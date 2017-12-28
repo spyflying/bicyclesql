@@ -1,0 +1,46 @@
+<html>  
+   <head>  
+      <meta http-equiv="Content-Type" content="text/html;charset=utf8">  
+      <title>注册</title>
+      <script type="text/javascript">
+        function check(){ 
+          with(document.all){ 
+            if(userid.value.length == 0){
+              alert("选项不能为空");
+              return false;
+            }
+            if(userpss1.value!=userpss2.value){ 
+              alert("密码不一致") 
+              userpss1.value = ""; 
+              userpss2.value = ""; 
+              return false;
+            } 
+            if(paypssw1.value!=paypssw2.value){ 
+              alert("密码不一致") 
+              paypssw1.value = ""; 
+              paypss22.value = ""; 
+              return false;
+            } 
+            else {
+              //alert("密码一致");
+              document.forms[0].submit(); 
+            }
+          }
+        } 
+    </script>  
+  </head>  
+  <body style="color:gray;text-align:center;font-weight:bold;font-family:Tahoma;">  
+       <h1>注册</h1>  
+       <hr size="5" color="blue">  
+     <form name = "a" action="register.php" onsubmit="return check(this)" method="post"><br><br>
+      姓名: <input type= "text" id = "username" name="username" size="30"><br><br>
+      密码: <input type= "password" id = "userpss1" name="userpss1" size="30"><br><br>
+      再输一次: <input type = "password" id = "userpss2" name ="userpss2" size="30"><br><br>
+      手机：<input type= "text" id = "userid" name = "userid" size = "30"><br><br>
+      职业: <input type = "text" id = "userprof" name = "userprof" size = "30"><br><br>
+      支付密码: <input type= "password" id = "paypssw1" name="paypssw1" size="30"><br><br>
+      再输一次: <input type = "password" id = "paypssw2" name ="paypssw2" size="30"><br><br>
+      <input type="submit" value="Submit"> 
+    </form>  
+   </body>    
+</html>  

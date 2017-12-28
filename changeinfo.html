@@ -1,0 +1,37 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf8">
+	<title>修改个人信息</title>
+</head>
+<body>
+	<script language = "JavaScript">
+		function GetQueryString(name){
+			var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+			var r = window.location.search.substr(1).match(reg);
+			if(r!=null)
+				return  unescape(r[2]); 
+			return null;
+		}
+		function check(){
+			var uid = GetQueryString("uid");
+			with(document.all){
+				if(userid.value != uid){
+					alert("不能修改手机");
+					alert(uid);
+					return false;
+				} 
+				else{
+				document.forms[0].submit(); 		
+				}
+			
+			}
+		}
+	</script>
+	<form name = "a" action="changeinfo.php" onsubmit = "return check(this);" method="post"><br><br>
+      姓名: <input type= "text" id = "username" name="username" size="30"><br><br>
+      手机号：<input type="text" id = "userid" name = "userid"  size = "30"><br><br>
+      职业: <input type = "text" id = "userprof" name = "userprof" size = "30"><br><br>
+      <input type="submit" value="Submit"> 
+  </form>
+</body>
+</html>

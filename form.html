@@ -1,0 +1,51 @@
+<html>
+<head>
+<script type="text/javascript">
+
+function check(){ 
+	with(document.all){ 
+		//alert(mname.value.length);
+		//alert(input1.value);
+		//alert("haha");
+		if(mname.value.length == 0){
+			alert("选项不能为空");
+			return false;
+		}
+		if(input1.value!=input2.value) 
+		{ 
+			alert("密码不一致") 
+				input1.value = ""; 
+				input2.value = ""; 
+				return false;
+		} 
+		else {
+			//var x=document.forms["a"]["mname"].value;
+			//if(x == null || x == ""){
+			//	alert("选项不能为空")；
+			//	return false;
+			//}
+			//else{
+				alert("密码一致");
+				document.forms[0].submit(); 
+			//}
+		}
+	}
+} 
+</script>
+</head>
+
+<body>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf8">  
+		<title>注册</title>
+	</head>
+<form name = "a" action="submitpage.htm" onsubmit="return check(this)" method="post">
+姓名: <input type= "text" id = "mname" name="mname" size="30">
+密码: <input type= "password" id = "input1" name="input1" size="30">
+再输一次: <input type = "password" id = "input2" name ="input2" size="30">
+
+<input type="submit" value="Submit"> 
+</form>
+</body>
+
+</html>

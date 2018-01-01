@@ -24,6 +24,23 @@ if(!$result){
 }
 
 //跳转到登录界面
-header("refresh:3;url = login.html"); 
-print("修改成功，三秒后跳转到登录页面。。。。。。");
+$LocationRoleHref = "getinfo.php?uid=".$uid;
+echo "修改信息完成";
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>修改个人信息</title>
+    <?php include 'parts/head.php'; ?>
+</head>
+<body>
+
+    <script>
+        setTimeout(function () {
+            location.href = "<?=$LocationRoleHref?>";
+        }, 3000);
+    </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf8">
+ <title>用车</title>
+</head>
+<body>
+
+你可选择下面两种用车方式中的任意一种！
+<br>
+<br>
+<br>
+
+<!--script language=javascript >
+    //var src = document.getElementById("uid").value = window.location.href;
+    alert(document.getElementByName("uid").value=location.href);
+    var params = src.split('?');
+    //输出newid=10001中的id
+     if(params[1]) {
+        var idparams = params[1].split('=');
+    }
+    document.write(idparams+"我们来测试一下解析参数");
+</script-->
+<script>
+  //使用正则表达式解析url
+  function GetQueryString(name){
+    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if(r!=null)
+      return  unescape(r[2]);
+    return null;
+  }
+  var uid = GetQueryString("uid");
+
+  //var url1="userbike.php?uid="+Uid;
+  //var url2="searcharound.php?uid="+Uid;
+  //"<?php echo $uid; ?>";
+
+$resultt = mysqli_query($db, $uid_query);
+$result = $resultt->fetch_all(MYSQLI_ASSOC);
+</script>
+<!--A href="testB.php?newid=<?php echo $result; ?>" >跳转链接</A-->
+<form action="userbike.php" method="get">
+<input type="hidden" name="uid" value='Uid'>
+单车编号: <input type="text" name="bikeid">
+<input type="submit" value="显示密码">
+<br>
+<br>
+</form>
+
+
+
+<form action="searcharound.php" method="post">
+
+当前位置:
+<select   name='posid' >
+<option value ="0">北大西门</option>
+<option value ="1">北大东门</option>
+<option value="2">北大南门</option>
+<option value="3">二教</option>
+<option value ="4">未名湖</option>
+<option value ="5">33楼</option>
+<option value="6">全家</option>
+<option value="7">物美</option>
+<option value="8">图书馆</option>
+<option value="9">学五</option>
+</select>
+<input type="submit" value="搜索周边">
+</form>
+
+
+</body>
+</html>

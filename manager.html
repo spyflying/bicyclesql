@@ -1,0 +1,50 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf8">
+	<title>管理员界面</title>
+</head>
+<body>
+    <h3>管理用户和单车</h3>
+	<form name = "addbike" action="addbike.php" method="post" vertical-align:middle>  
+        单车编号 :<input type="text" id = "bikeid" name="bikeid"><br><br>  
+        单车密码 :<input type="text" id = "bikepss" name="bikepss"><br><br>  
+        投放位置 :<input type="text" id = "bikepos" name="bikepos"><br><br>
+        用车价格 :<input type="text" id = "bikeprice" name="bikeprice"><br><br>
+        <input type="submit" value="添加单车">
+    </form>
+    <form name = "changebike" action="changebike.php" method="post" vertical-align:middle>  
+        单车编号 :<input type="text" id = "bikeid" name="bikeid"><br><br>  
+        单车密码 :<input type="text" id = "bikepss" name="bikepss"><br><br>  
+        投放位置 :<input type="text" id = "bikepos" name="bikepos"><br><br>
+        用车价格 :<input type="text" id = "bikeprice" name="bikeprice"><br><br>
+        <input type="submit" value="修改单车信息"> 
+    </form>
+    <form name = "deletebike" action="deletebike.php" method="post" vertical-align:middle>  
+        单车编号 :<input type="text" id = "bikeid" name="bikeid"><br><br>  
+        <input type="submit" value="删除单车"> 
+    </form>  
+	<form name = "adduser" action="adduser.php" method="post" vertical-align:middle>  
+        用户名 :<input type="text" id = "uname" name="uname"><br><br>  
+        手机号 :<input type="text" id = "uid" name="uid"><br><br>  
+        用户密码 :<input type="text" id = "upss" name="upss"><br><br>
+        职业 :<input type="text" id = "uprof" name="uprof"><br><br>
+        账户余额 :<input type="text" id = "balance" name="balance"><br><br>
+        支付密码 :<input type="text" id = "paypss" name="paypss"><br><br>
+        <input type="submit" value="添加用户">
+    </form>
+    <form name = "changeuser" action="changeuser.php" method="post" vertical-align:middle>  
+        用户名 :<input type="text" id = "uname" name="uname"><br><br>  
+        手机号 :<input type="text" id = "uid" name="uid"><br><br>  
+        用户密码 :<input type="text" id = "upss" name="upss"><br><br>
+        职业 :<input type="text" id = "uprof" name="uprof"><br><br>
+        账户余额 :<input type="text" id = "balance" name="balance"><br><br>
+        支付密码 :<input type="text" id = "paypss" name="paypss"><br><br>
+        <input type="submit" value="修改用户信息">
+    </form>
+    <form name = "deleteuser" action="deleteuser.php" method="post" vertical-align:middle>  
+        手机号 :<input type="text" id = "uid" name="uid"><br><br>  
+        <input type="submit" value="删除用户">
+    </form>
+</body>
+</html>
+	

@@ -8,7 +8,7 @@ $uid_query = "SELECT *
               FROM user
               WHERE userid = '{$uid}' and userpss = '{$psw}';";
 
-/*$uid_query = "SELECT selled, uid 
+/*$uid_query = "SELECT selled, uid
               FROM Goods
               WHERE gid = '{$buying_gid}';";*/
 
@@ -31,12 +31,11 @@ echo "<br>";
         switch($result[0]['usertype']) {
             case '0':
                 $login_info = "您已经成功登录！您的角色是用户！";
-                $LocationRoleHref = "index.php";
+                $LocationRoleHref  = "http://localhost/bike/bicyclesql-master/getinfo.php?uid=".$uid;
                 break;
             case '1':
                 $login_info = "您已经成功登录！您的角色是管理员！";
-                $LocationRoleHref = "manager.php";
-                break;
+                $LocationRoleHref = "http://localhost/bike/bicyclesql-master/manager.html";
             default:break;
         }
     }
@@ -56,8 +55,8 @@ echo "<br>";
         function bt_click(){
             alert("enter");
             var dis = "<?php
-            $url = "http://localhost/bike/bicyclesql-master/getinfo.php?uid=".$uid;           
-            echo $url;?>";
+            //$url = $uid;
+            echo $LocationRoleHref;?>";
             alert(dis);
             window.location.href = dis;
         }

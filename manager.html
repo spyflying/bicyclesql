@@ -1,50 +1,165 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf8">
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
 	<title>管理员界面</title>
 </head>
 <body>
     <h3>管理用户和单车</h3>
-	<form name = "addbike" action="addbike.php" method="post" vertical-align:middle>  
-        单车编号 :<input type="text" id = "bikeid" name="bikeid"><br><br>  
-        单车密码 :<input type="text" id = "bikepss" name="bikepss"><br><br>  
+	<form name = "addbike" action="addbike.php" method="post" vertical-align:middle>
+        单车编号 :<input type="text" id = "bikeid" name="bikeid"><br><br>
+        单车密码 :<input type="text" id = "bikepss" name="bikepss"><br><br>
         投放位置 :<input type="text" id = "bikepos" name="bikepos"><br><br>
         用车价格 :<input type="text" id = "bikeprice" name="bikeprice"><br><br>
         <input type="submit" value="添加单车">
     </form>
-    <form name = "changebike" action="changebike.php" method="post" vertical-align:middle>  
-        单车编号 :<input type="text" id = "bikeid" name="bikeid"><br><br>  
-        单车密码 :<input type="text" id = "bikepss" name="bikepss"><br><br>  
+    <form name = "changebike" action="changebike.php" method="post" vertical-align:middle>
+        单车编号 :<input type="text" id = "bikeid" name="bikeid"><br><br>
+        单车密码 :<input type="text" id = "bikepss" name="bikepss"><br><br>
         投放位置 :<input type="text" id = "bikepos" name="bikepos"><br><br>
         用车价格 :<input type="text" id = "bikeprice" name="bikeprice"><br><br>
-        <input type="submit" value="修改单车信息"> 
+        <input type="submit" value="修改单车信息">
     </form>
-    <form name = "deletebike" action="deletebike.php" method="post" vertical-align:middle>  
-        单车编号 :<input type="text" id = "bikeid" name="bikeid"><br><br>  
-        <input type="submit" value="删除单车"> 
-    </form>  
-	<form name = "adduser" action="adduser.php" method="post" vertical-align:middle>  
-        用户名 :<input type="text" id = "uname" name="uname"><br><br>  
-        手机号 :<input type="text" id = "uid" name="uid"><br><br>  
+    <h4>查看报修单车</h4>
+    <input type='button' id='bt6' value = '查询'>
+    <p id='result6'></p>
+    <script>
+    $('#bt6').click(function(){
+          $.ajax({
+               type: "POST",
+               url: "showbrokenbike.php",
+               data: "street="+$('#street').text(),
+               async: false,
+                  success: function(data){
+                       $('#result6').text(data);
+
+                  },
+              error:function(data){
+                alert('error');
+              }
+
+                });
+  });
+
+    </script>
+    <form name = "deletebike" action="deletebike.php" method="post" vertical-align:middle>
+        单车编号 :<input type="text" id = "bikeid" name="bikeid"><br><br>
+        <input type="submit" value="删除单车">
+    </form>
+	<form name = "adduser" action="adduser.php" method="post" vertical-align:middle>
+        用户名 :<input type="text" id = "uname" name="uname"><br><br>
+        手机号 :<input type="text" id = "uid" name="uid"><br><br>
         用户密码 :<input type="text" id = "upss" name="upss"><br><br>
         职业 :<input type="text" id = "uprof" name="uprof"><br><br>
         账户余额 :<input type="text" id = "balance" name="balance"><br><br>
         支付密码 :<input type="text" id = "paypss" name="paypss"><br><br>
         <input type="submit" value="添加用户">
     </form>
-    <form name = "changeuser" action="changeuser.php" method="post" vertical-align:middle>  
-        用户名 :<input type="text" id = "uname" name="uname"><br><br>  
-        手机号 :<input type="text" id = "uid" name="uid"><br><br>  
+    <form name = "changeuser" action="changeuser.php" method="post" vertical-align:middle>
+        用户名 :<input type="text" id = "uname" name="uname"><br><br>
+        手机号 :<input type="text" id = "uid" name="uid"><br><br>
         用户密码 :<input type="text" id = "upss" name="upss"><br><br>
         职业 :<input type="text" id = "uprof" name="uprof"><br><br>
         账户余额 :<input type="text" id = "balance" name="balance"><br><br>
         支付密码 :<input type="text" id = "paypss" name="paypss"><br><br>
         <input type="submit" value="修改用户信息">
     </form>
-    <form name = "deleteuser" action="deleteuser.php" method="post" vertical-align:middle>  
-        手机号 :<input type="text" id = "uid" name="uid"><br><br>  
+    <form name = "deleteuser" action="deleteuser.php" method="post" vertical-align:middle>
+        手机号 :<input type="text" id = "uid" name="uid"><br><br>
         <input type="submit" value="删除用户">
     </form>
+    <h3>查询信息</h3>
+    <h4>找出共享单车数低于平均共享单车数的地点</h4>
+    <input type='button' id='bt1' value = '查询'>
+    <p id='result1'></p>
+    <script>
+    $('#bt1').click(function(){
+          $.ajax({
+               type: "POST",
+               url: "selectavgbike.php",
+               data: "uid="+$('#uid').val(),
+               async: false,
+               success(data){
+                $('#result1').text(data);
+            },
+              error:function(data){
+                alert('error');
+              }
+
+                });
+  });
+    </script>
+
+    <h4>找出今天内完成订单最多的用户</h4>
+    <input type='button' id='bt2' value = '查询'>
+    <p id='result'></p>
+    <script>
+    $('#bt2').click(function(){
+          $.ajax({
+               type: "POST",
+               url: "selectuser.php",
+               data: "uid="+$('#uid').text(),
+               async: false,
+                  success: function(data){
+                       $('#result').text(data);
+
+                  },
+              error:function(data){
+                alert('error');
+              }
+
+                });
+  });
+
+    </script>
+
+    <h4>找出区域内用户总消费金额</h4>
+    <input type='text' id='street'>
+    <input type='button' id='bt3' value = '查询'>
+    <p id='result3'></p>
+    <script>
+    $('#bt3').click(function(){
+          $.ajax({
+               type: "POST",
+               url: "totalmoney.php",
+               data: "street="+$('#street').val(),
+               async: false,
+                  success: function(data){
+                       $('#result3').text(data);
+
+                  },
+              error:function(data){
+                alert('error');
+              }
+
+                });
+  });
+
+    </script>
+
+    <h4>查询故障率大于平均单车故障率的单车类型</h4>
+
+    <h4>查询故障单车使用数量比可用单车数量更多的区域</h4>
+    <input type='button' id='bt5' value = '查询'>
+    <p id='result5'></p>
+    <script>
+    $('#bt5').click(function(){
+          $.ajax({
+               type: "POST",
+               url: "okbike.php",
+               data: "street="+$('#street').text(),
+               async: false,
+                  success: function(data){
+                       $('#result5').text(data);
+
+                  },
+              error:function(data){
+                alert('error');
+              }
+
+                });
+  });
+
+    </script>
 </body>
 </html>
-	
